@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Car Shop - Sedan</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            $("#includedContent").load("/master.html");
+        });
+    </script>
+
+</head>
+
+<body>
+    <div id="includedContent"></div>
+    <!-- Start Content -->
+    <div class="container py-5">
+        <div class="row">
+
+            <div class="col-lg-9">
+                <div class="row" id="cards"><!--productos de la página principal--></div>
+
+                <!---Paginacion-->
+                <div div="row">
+                    <ul class="pagination pagination-lg justify-content-end" id="pagination">
+                        
+
+                    </ul>
+                </div>
+            </div>
+            <!-------------Cartito----------------------------->
+            <div class="col-lg-3">
+                <h1 class="h2 pb-4">
+                    <a class="nav-icon position-relative text-decoration-none" href="#">
+                        <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+                    </a>
+                    Carrito
+                </h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Código</th>
+                            <th scope="col">Cant.</th>
+                            <th scope="col">Acción</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="items"><!--items del carrito--></tbody>
+                </table>
+                <table class="table table-borderless">
+                    <thead>
+                    </thead>
+                    <tbody id="footer">
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+
+    <template id="template-pagination">
+        <li class="page-item">
+            <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#">3</a>
+        </li>
+    </template>
+
+    <template id="template-card">
+        <div class="col-12 mb-2 col-md-4">
+            <div class="card mb-4 product-wap rounded-0">
+                <div class="card rounded-0">
+                    <img class="card-img rounded-0 img-fluid" src="">
+                </div>
+                <div class="card-body">
+                    <p class="text-left mb-0"></p>
+                    <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+                        <li>Description: <p></p>
+                        </li>
+                    </ul>
+                    <p class="text-left mb-0">Precio:<span></span>€</p>
+                    <p class="text-left mb-0">Unidades Stock: <span></span></p>
+                    <div class="row pb-3">
+                        <div class="col d-grid">
+                            <button class="btn btn-success btn-lg">Agregar a la cesta</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="template-carrito">
+        <tr>
+            <td></td>
+            <td></td>
+            <td>
+                <button class="btn btn-info btn-sm">+</button>
+                <button class="btn btn-danger btn-sm">-</button>
+            </td>
+            <td><span></span>€</td>
+            <td><i class="bi bi-trash3-fill" title="Eliminar de la cesta"></i></td>
+        </tr>
+
+    </template>
+
+    <template id="template-footer">
+        <tr>
+            <td>Total:</td>
+            <td><span></span>€</td>
+            <td colspan="2" style="white-space: nowrap" !important;><a class="btn btn-primary" href="#"
+                    role="button">Realizar Pedido</a></td>
+        </tr>
+    </template>
+
+    <script src="/index.js"></script>
+</body>
+
+</html>
