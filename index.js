@@ -18,7 +18,7 @@ let data;
 const elementosPorPagina = 6;
 let paginaActual = 1;
 
-document.addEventListener('DOMContentLoaded', () => {
+$(document).ready( () => {
     fetchData();
 
     /*if (localStorage.getItem('carrito')) {
