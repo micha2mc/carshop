@@ -83,5 +83,15 @@
         "image": "/assets/img/sedan_07.jpg",
         "categories": "sed"
     }
+    ,
+    {
+        "id": 10,
+        "cod": "Suv01",
+        "description": "El Nuevo 3008 es sin dudas un vehículo innovador disponible en España desde 2023.",
+        "price": 70000,
+        "stock": 10,
+        "image": "/assets/img/shop_01.jpg",
+        "categories": "suv"
+    }
     
 ]

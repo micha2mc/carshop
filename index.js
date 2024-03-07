@@ -2,6 +2,7 @@
 const cards = document.getElementById('cards');
 const items = document.getElementById('items');
 const pagination = document.getElementById('pagination');
+const categories = document.getElementById('categories');
 //Carga de template
 const templateCard = document.getElementById('template-card').content;
 const templateCarrito = document.getElementById('template-carrito').content;
@@ -18,7 +19,7 @@ let dataFilter;
 
 const elementosPorPagina = 6;
 let paginaActual = 1;
-let filtro = 'sed';
+let filtro = null;
 
 $(document).ready(() => {
     fetchData();
@@ -46,7 +47,15 @@ pagination.addEventListener('click', e => {
     paginationAccion(e);
 });
 
+categories.addEventListener('click', e => {
+    typeCategories(e);
+});
 
+
+
+/**
+ * Zona de lógica
+ */
 const fetchData = async () => {
     try {
         const res = await fetch('/data/apidata.json');
@@ -102,7 +111,7 @@ const datosPorPagina = () => {
 
 const paginacionTotales = () => {
     const paginasTotales = Math.ceil(dataFilter.length / elementosPorPagina);
-
+    pagination.innerHTML = '';
     if (paginasTotales > 1) {
         templatePagination.querySelector('a').textContent = 'Inicio';
         templatePagination.querySelector('a').dataset.id = 1;
@@ -273,6 +282,26 @@ const pintarFooter = () => {
 const paginationAccion = e => {
     paginaActual = e.target.dataset.id;
     pintarCards();
+    e.stopPropagation();
+}
+
+const typeCategories = e => {
+
+    switch (e.target.id) {
+        case 'sedan':
+            filtro = 'sed';
+            break;
+        case 'family':
+            filtro = 'fam';
+            break;
+        case 'suv':
+            filtro = 'suv';
+            break;
+        default:
+            filtro = null;
+    }
+    metodoFiltradoDatos();
+    paginacionTotales();
     e.stopPropagation();
 }
 
