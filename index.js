@@ -14,11 +14,13 @@ const fragment = document.createDocumentFragment();
 //Lista de objetos en el carrito
 let carrito = {};
 let data;
+let dataFilter;
 
 const elementosPorPagina = 6;
 let paginaActual = 1;
+let filtro = 'sed';
 
-$(document).ready( () => {
+$(document).ready(() => {
     fetchData();
 
     /*if (localStorage.getItem('carrito')) {
@@ -49,12 +51,21 @@ const fetchData = async () => {
     try {
         const res = await fetch('/data/apidata.json');
         data = await res.json();
+        metodoFiltradoDatos();
         paginacionTotales();
-        pintarCards();
 
     } catch (error) {
         console.log(error);
     }
+}
+
+const metodoFiltradoDatos = () => {
+    dataFilter = data;
+    if (filtro !== null) {
+        dataFilter = data.filter(dat => dat.categories === filtro);
+    }
+
+    pintarCards();
 }
 
 //pintando objetos en la pantalla
@@ -83,14 +94,14 @@ const pintarCards = () => {
     cards.appendChild(fragment);
 }
 
-const datosPorPagina = (pagina = 1) => {
+const datosPorPagina = () => {
     const corteDeInicio = (paginaActual - 1) * elementosPorPagina;
     const corteDeFinal = corteDeInicio + elementosPorPagina;
-    return data.slice(corteDeInicio, corteDeFinal);
+    return dataFilter.slice(corteDeInicio, corteDeFinal);
 }
 
 const paginacionTotales = () => {
-    const paginasTotales = Math.ceil(data.length / elementosPorPagina);
+    const paginasTotales = Math.ceil(dataFilter.length / elementosPorPagina);
 
     if (paginasTotales > 1) {
         templatePagination.querySelector('a').textContent = 'Inicio';
@@ -117,8 +128,8 @@ const paginacionTotales = () => {
  * @param {} e 
  */
 
-const stockNoDisponible = data => {
-    if (data.stock <= 0) {
+const stockNoDisponible = producto => {
+    if (producto.stock <= 0) {
         templateCard.querySelector('button').setAttribute("disabled", true);
     } else {
         templateCard.querySelector('button').removeAttribute("disabled");
@@ -136,7 +147,6 @@ const addCarrito = e => {
 
 //funcion para manipular objetos del carrito
 const setCarrito = objeto => {
-
     const producto = {
         id: objeto.querySelector('.btn-success').dataset.id,
         precio: objeto.querySelectorAll('span')[0].textContent,
@@ -190,16 +200,16 @@ const actualizarStock = (idData, typeOp) => {
     }
 
     data[idData] = { ...dataTemp };
-    pintarCards();
+    metodoFiltradoDatos();
+    //pintarCards();
 }
 
 
 const btnAccion = e => {
 
     const idCarrito = e.target.dataset.id;
-
     //Accion de sumar cantidad de productos
-    if (e.target.classList.contains('btn-info')) {
+    if (e.target.classList.contains('btn-info') && data[idCarrito - 1].stock >= 1) {
         const producto = carrito[idCarrito];
         producto.cantidad++;
         carrito[idCarrito] = { ...producto };
@@ -210,7 +220,6 @@ const btnAccion = e => {
     if (e.target.classList.contains('bi-trash3-fill')) {
         const productoCar = carrito[idCarrito];
         let dataTem = data[idCarrito - 1];
-        console.log(productoCar.cantidad)
         dataTem.stock = dataTem.stock + productoCar.cantidad;
         data[idCarrito - 1] = { ...dataTem };
         delete carrito[idCarrito];

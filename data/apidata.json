@@ -44,16 +44,6 @@
         "stock": 5,
         "image": "/assets/img/sedan_05.jpg",
         "categories": "sed"
-    }
-    ,
-    {
-        "id": 7,
-        "cod": "Fam02",
-        "description": "El Nuevo 3008 es sin dudas un vehículo innovador disponible en España desde 2023.",
-        "price": 70000,
-        "stock": 10,
-        "image": "/assets/img/familiar_02.jpg",
-        "categories": "sed"
     },
     {
         "id": 6,
@@ -62,6 +52,35 @@
         "price": 90000,
         "stock": 5,
         "image": "/assets/img/sedan_06.jpg",
+        "categories": "sed"
+    },
+    {
+        "id": 7,
+        "cod": "Fam01",
+        "description": "El Nuevo 3008 es sin dudas un vehículo innovador disponible en España desde 2023.",
+        "price": 70000,
+        "stock": 10,
+        "image": "/assets/img/familiar_01.jpg",
+        "categories": "fam"
+    }
+    ,
+    {
+        "id": 8,
+        "cod": "Fam02",
+        "description": "El Nuevo 3008 es sin dudas un vehículo innovador disponible en España desde 2023.",
+        "price": 70000,
+        "stock": 10,
+        "image": "/assets/img/familiar_02.jpg",
+        "categories": "fam"
+    }
+    ,
+    {
+        "id": 9,
+        "cod": "Sed07",
+        "description": "El Nuevo 3008 es sin dudas un vehículo innovador disponible en España desde 2023.",
+        "price": 70000,
+        "stock": 10,
+        "image": "/assets/img/sedan_07.jpg",
         "categories": "sed"
     }
     
