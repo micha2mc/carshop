@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "name": "Sedan",
+        "cod": "sed"
+    },
+    {
+        "id": 2,
+        "name": "SUV - 4x4",
+        "cod": "suv"
+    },
+    {
+        "id": 3,
+        "name": "Familiar",
+        "cod": "fam"
+    }
+]

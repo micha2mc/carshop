@@ -19,6 +19,15 @@
         "categories": "sed"
     },
     {
+        "id": 8,
+        "cod": "Fam02",
+        "description": "El Nuevo 3008 es sin dudas un vehículo innovador disponible en España desde 2023.",
+        "price": 70000,
+        "stock": 10,
+        "image": "/assets/img/familiar_02.jpg",
+        "categories": "fam"
+    },
+    {
         "id": 3,
         "cod": "Sed03",
         "description": "El Nuevo 3008 es sin dudas un vehículo innovador disponible en España desde 2023.Con el nuevo Todoterreno 5 puertas, Peugeot presenta características rennovadas que puedes descubrir en la sección de imágenes que ponemos a disposición para ti",
@@ -26,6 +35,16 @@
         "stock": 5,
         "image": "/assets/img/sedan_03.jpg",
         "categories": "sed"
+    },
+    
+    {
+        "id": 10,
+        "cod": "Suv01",
+        "description": "El Nuevo 3008 es sin dudas un vehículo innovador disponible en España desde 2023.",
+        "price": 70000,
+        "stock": 10,
+        "image": "/assets/img/shop_01.jpg",
+        "categories": "suv"
     },
     {
         "id": 4,
@@ -63,16 +82,7 @@
         "image": "/assets/img/familiar_01.jpg",
         "categories": "fam"
     }
-    ,
-    {
-        "id": 8,
-        "cod": "Fam02",
-        "description": "El Nuevo 3008 es sin dudas un vehículo innovador disponible en España desde 2023.",
-        "price": 70000,
-        "stock": 10,
-        "image": "/assets/img/familiar_02.jpg",
-        "categories": "fam"
-    }
+    
     ,
     {
         "id": 9,
@@ -83,15 +93,6 @@
         "image": "/assets/img/sedan_07.jpg",
         "categories": "sed"
     }
-    ,
-    {
-        "id": 10,
-        "cod": "Suv01",
-        "description": "El Nuevo 3008 es sin dudas un vehículo innovador disponible en España desde 2023.",
-        "price": 70000,
-        "stock": 10,
-        "image": "/assets/img/shop_01.jpg",
-        "categories": "suv"
-    }
+    
     
 ]

@@ -3,11 +3,13 @@ const cards = document.getElementById('cards');
 const items = document.getElementById('items');
 const pagination = document.getElementById('pagination');
 const categories = document.getElementById('categories');
+const itemCategoria = document.getElementById('item-categoria');
 //Carga de template
 const templateCard = document.getElementById('template-card').content;
 const templateCarrito = document.getElementById('template-carrito').content;
 const templateFooter = document.getElementById('template-footer').content;
 const templatePagination = document.getElementById('template-pagination').content;
+const templateItemCategoria = document.getElementById('template-item-categoria').content;
 //fragment
 const fragment = document.createDocumentFragment();
 
@@ -16,6 +18,7 @@ const fragment = document.createDocumentFragment();
 let carrito = {};
 let data;
 let dataFilter;
+let categData;
 
 const elementosPorPagina = 6;
 let paginaActual = 1;
@@ -50,6 +53,15 @@ pagination.addEventListener('click', e => {
 categories.addEventListener('click', e => {
     typeCategories(e);
 });
+itemCategoria.addEventListener('click', e => {
+    filtro = e.target.dataset.id;
+    paginaActual = 1;
+    metodoFiltradoDatos();
+    paginacionTotales();
+    e.stopPropagation();
+});
+
+
 
 
 
@@ -59,9 +71,12 @@ categories.addEventListener('click', e => {
 const fetchData = async () => {
     try {
         const res = await fetch('/data/apidata.json');
+        const resCateg = await fetch('/data/datacategories.json');
         data = await res.json();
+        let categData = await resCateg.json();
         metodoFiltradoDatos();
         paginacionTotales();
+        pintarCategorias(categData);
 
     } catch (error) {
         console.log(error);
@@ -73,11 +88,22 @@ const metodoFiltradoDatos = () => {
     if (filtro !== null) {
         dataFilter = data.filter(dat => dat.categories === filtro);
     }
+    
 
     pintarCards();
 }
 
 //pintando objetos en la pantalla
+const pintarCategorias = (categData) => {
+    categData.forEach(cat => {
+        templateItemCategoria.querySelector('a').dataset.id = cat.cod;
+        templateItemCategoria.querySelector('a').textContent = cat.name;
+        const clone = templateItemCategoria.cloneNode(true);
+        fragment.appendChild(clone);
+    });
+
+    itemCategoria.appendChild(fragment)
+}
 const pintarCards = () => {
     cards.innerHTML = '';
     const dataPint = datosPorPagina(paginaActual);
@@ -106,11 +132,14 @@ const pintarCards = () => {
 const datosPorPagina = () => {
     const corteDeInicio = (paginaActual - 1) * elementosPorPagina;
     const corteDeFinal = corteDeInicio + elementosPorPagina;
+    
     return dataFilter.slice(corteDeInicio, corteDeFinal);
 }
 
 const paginacionTotales = () => {
     const paginasTotales = Math.ceil(dataFilter.length / elementosPorPagina);
+    console.log(dataFilter)
+    console.log(paginasTotales)
     pagination.innerHTML = '';
     if (paginasTotales > 1) {
         templatePagination.querySelector('a').textContent = 'Inicio';

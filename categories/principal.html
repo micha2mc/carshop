@@ -25,41 +25,47 @@
                 Car Shop
             </a>
 
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
+            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between"
+                id="templatemo_main_nav">
                 <div class="flex-fill">
                     <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="/index.html">Home</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" >
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                                 Categorias
                             </a>
                             <ul class="dropdown-menu" id="categories">
-                              <li><a class="dropdown-item" id="sedan" href="#">Sedan</a></li>
-                              <li><a class="dropdown-item" id="suv" href="#">Suv - 4x4</a></li>
-                              <li><a class="dropdown-item" id="family" href="#">Familiar</a></li>
-                              <li><hr class="dropdown-divider"></li>
-                              <li><a class="dropdown-item" href="#">Añadir Categoria</a></li>
+                                <div class="col" id="item-categoria">
+
+                                    <!--Categorias-->
+                                </div>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Añadir Categoria</a></li>
                             </ul>
                         </li>
-                        
+
                         <li class="nav-item">
                             <a class="nav-link" href="#"></a>
                         </li>
-                        
+
                         <li class="nav-item">
                             <a class="nav-link" href="#"></a>
                         </li>
-                        
+
                         <li class="nav-item">
                             <a class="nav-link" href="#"></a>
                         </li>
-                        
+
                         <li class="nav-item">
                             <a class="nav-link" href="#"></a>
                         </li>
@@ -67,7 +73,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="contact.html">Contact</a>
                         </li>
-                        
+
                     </ul>
                 </div>
             </div>
@@ -79,12 +85,76 @@
         <div class="row">
 
             <div class="col-lg-9">
-                <div class="row" id="cards"><!--productos de la página principal--></div>
+                <div class="row" id="cards"><!--productos de la página principal-->
+
+                </div>
+                <div class="col-12 mb-2 col-md-4">
+                    <div class="card mb-4 product-wap rounded-0">
+                        <div class="card-body">
+                            <div class="row pb-1">
+                                <div class="col d-grid">
+                                    <!--<button class="btn btn-info btn-lg"></button>-->
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#productModal">
+                                        <i class="bi bi-plus-circle"></i> Añadir
+                                        Producto
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Button trigger modal -->
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="productModalLabel">Añadir Nuevo Producto</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="formulario">
+                                    <div class="col mb-3">
+                                        <input type="text" class="form-control" id="cod" placeholder="Enter Cod">
+                                    </div>
+                                    <div class="col mb-3">
+                                        <input type="text" class="form-control" id="categories" placeholder="Enter Categorie">
+                                    </div>
+                                    <div class="col mb-3">
+                                        <input type="number" class="form-control" id="stock" placeholder="Enter Strock">
+                                    </div>
+                                    
+                                    <div class="col mb-3">
+                                        <input type="number" class="form-control" id="price" placeholder="Enter Price">
+                                    </div>
+                                    <textarea type="text" class="form-control" id="description" placeholder="Enter description"></textarea>
+
+                                    <div class="col-sm-6">
+                                        <input type="file" id="upload" />
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
 
                 <!---Paginacion-->
                 <div div="row">
                     <ul class="pagination pagination-lg justify-content-end" id="pagination">
-                        
+
 
                     </ul>
                 </div>
@@ -124,7 +194,7 @@
 
     <template id="template-pagination">
         <li class="page-item">
-            <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#">3</a>
+            <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#"></a>
         </li>
     </template>
 
@@ -173,6 +243,10 @@
             <td colspan="2" style="white-space: nowrap" !important;><a class="btn btn-primary" href="#"
                     role="button">Realizar Pedido</a></td>
         </tr>
+    </template>
+
+    <template id="template-item-categoria">
+        <li><a class="dropdown-item" href="#">Sedan</a></li>
     </template>
 
     <script src="/index.js"></script>
