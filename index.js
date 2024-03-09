@@ -61,6 +61,31 @@ itemCategoria.addEventListener('click', e => {
     e.stopPropagation();
 });
 
+//Modal del formulario
+$('#formulario').submit(e => {
+
+    //e.preventDefault();
+    const upload = $('#upload')[0].files[0];
+    let fileReader = new FileReader();
+    fileReader.readAsDataURL(upload);
+    console.log(fileReader.result)
+
+    const newData = {
+        "id": parseInt(calculoIndiceMayor(data)) + 1,
+        "cod": $('#cod').val(),
+        "description": $('#description').val(),
+        "price": parseInt($('#price').val()),
+        "stock": parseInt($('#stock').val()),
+        "categories": $('#categoriesForm').val(),
+        //"image": $('#categorie').val(),
+    }
+    
+    /*data.push(newData);
+    filtro = null;
+    metodoFiltradoDatos();*/
+    e.stopPropagation();
+});
+
 
 
 
@@ -88,7 +113,7 @@ const metodoFiltradoDatos = () => {
     if (filtro !== null) {
         dataFilter = data.filter(dat => dat.categories === filtro);
     }
-    
+
 
     pintarCards();
 }
@@ -132,14 +157,12 @@ const pintarCards = () => {
 const datosPorPagina = () => {
     const corteDeInicio = (paginaActual - 1) * elementosPorPagina;
     const corteDeFinal = corteDeInicio + elementosPorPagina;
-    
+
     return dataFilter.slice(corteDeInicio, corteDeFinal);
 }
 
 const paginacionTotales = () => {
     const paginasTotales = Math.ceil(dataFilter.length / elementosPorPagina);
-    console.log(dataFilter)
-    console.log(paginasTotales)
     pagination.innerHTML = '';
     if (paginasTotales > 1) {
         templatePagination.querySelector('a').textContent = 'Inicio';
@@ -332,6 +355,15 @@ const typeCategories = e => {
     metodoFiltradoDatos();
     paginacionTotales();
     e.stopPropagation();
+}
+
+const calculoIndiceMayor = datosPrinc => {
+    elementoMayor = datosPrinc[0].id
+    for (indx in datosPrinc) {
+        let elemento = datosPrinc[indx].id;
+        elementoMayor = elementoMayor > elemento ? elementoMayor : elemento;
+    }
+    return elementoMayor;
 }
 
 
