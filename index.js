@@ -4,12 +4,15 @@ const items = document.getElementById('items');
 const pagination = document.getElementById('pagination');
 const categories = document.getElementById('categories');
 const itemCategoria = document.getElementById('item-categoria');
+const informacionUser = document.getElementById('informacion-user');
+
 //Carga de template
 const templateCard = document.getElementById('template-card').content;
 const templateCarrito = document.getElementById('template-carrito').content;
 const templateFooter = document.getElementById('template-footer').content;
 const templatePagination = document.getElementById('template-pagination').content;
 const templateItemCategoria = document.getElementById('template-item-categoria').content;
+//.find("p").text("All Men's Women's");
 //fragment
 const fragment = document.createDocumentFragment();
 
@@ -61,14 +64,22 @@ itemCategoria.addEventListener('click', e => {
     e.stopPropagation();
 });
 
-//Modal del formulario
+$('#reset-categoria').click(e => {
+    filtro = null;
+    paginaActual = 1;
+    metodoFiltradoDatos();
+    paginacionTotales();
+    e.stopPropagation();
+});
+
+//Modal del formulario producto
 $('#formulario').submit(e => {
 
     //e.preventDefault();
-    const upload = $('#upload')[0].files[0];
+    /*const upload = $('#upload')[0].files[0];
     let fileReader = new FileReader();
     fileReader.readAsDataURL(upload);
-    console.log(fileReader.result)
+    console.log(fileReader.result)*/
 
     const newData = {
         "id": parseInt(calculoIndiceMayor(data)) + 1,
@@ -79,13 +90,26 @@ $('#formulario').submit(e => {
         "categories": $('#categoriesForm').val(),
         //"image": $('#categorie').val(),
     }
-    
-    /*data.push(newData);
+
+    data.push(newData);
     filtro = null;
-    metodoFiltradoDatos();*/
+    metodoFiltradoDatos();
     e.stopPropagation();
 });
 
+
+//Modal del formulario añadir categoria
+$('#formularioCategoria').submit(e => {
+
+    const newData = {
+        "id": parseInt(calculoIndiceMayor(categData)) + 1,
+        "cod": $('#name').val().substring(0, 3).toLowerCase(),
+        "name": $('#name').val(),
+    }
+    categData.push(newData);
+    pintarCategorias(categData);
+    e.stopPropagation();
+});
 
 
 
@@ -98,7 +122,7 @@ const fetchData = async () => {
         const res = await fetch('/data/apidata.json');
         const resCateg = await fetch('/data/datacategories.json');
         data = await res.json();
-        let categData = await resCateg.json();
+        categData = await resCateg.json();
         metodoFiltradoDatos();
         paginacionTotales();
         pintarCategorias(categData);
@@ -114,12 +138,19 @@ const metodoFiltradoDatos = () => {
         dataFilter = data.filter(dat => dat.categories === filtro);
     }
 
+    let catTemp = categData.filter(cat => cat.cod === filtro);
+    if (catTemp.length === 0) {
+        informacionUser.querySelector('p').textContent = 'Listado de todos los Vehículos'
+    } else {
+        informacionUser.querySelector('p').textContent = 'Vehículos de la categoria ' + catTemp[0].name;
+    }
 
     pintarCards();
 }
 
 //pintando objetos en la pantalla
 const pintarCategorias = (categData) => {
+    itemCategoria.innerHTML = '';
     categData.forEach(cat => {
         templateItemCategoria.querySelector('a').dataset.id = cat.cod;
         templateItemCategoria.querySelector('a').textContent = cat.name;
@@ -223,6 +254,7 @@ const setCarrito = objeto => {
     actualizarStock(producto.id - 1, 'SUMA');
 }
 
+//funcion para pintar el carrito
 const pintarCarrito = () => {
     items.innerHTML = '';
 
@@ -262,7 +294,6 @@ const actualizarStock = (idData, typeOp) => {
 
     data[idData] = { ...dataTemp };
     metodoFiltradoDatos();
-    //pintarCards();
 }
 
 
