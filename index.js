@@ -76,6 +76,10 @@ $('#formulario').submit(e => {
     e.preventDefault();
     const fileInput = document.getElementById('fileInput');
     const file = fileInput.files[0];
+    /*let reader = new FileReader();
+    reader.readAsArrayBuffer(file)
+File.
+    console.log(reader)*/
 
     const newData = {
         "id": parseInt(calculoIndiceMayor(data)) + 1,
@@ -312,7 +316,6 @@ const btnAccion = e => {
         dataTem.stock = dataTem.stock + productoCar.cantidad;
         data[idCarrito - 1] = { ...dataTem };
         delete carrito[idCarrito];
-
     }
 
 
@@ -346,16 +349,6 @@ const pintarFooter = () => {
     const clone = templateFooter.cloneNode(true);
     fragment.appendChild(clone);
     footer.appendChild(fragment);
-    /*templateFooter.querySelectorAll('td')[0].textContent = nCantidad;
-    
-    */
-
-    //boton de vaciar carrito
-    /*const btnVaciarCarrito = document.getElementById('vaciar-carrito');
-    btnVaciarCarrito.addEventListener('click', () => {
-        carrito = {};
-        pintarCarrito();
-    });*/
 }
 
 
