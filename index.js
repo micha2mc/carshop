@@ -12,8 +12,6 @@ const templateCarrito = document.getElementById('template-carrito').content;
 const templateFooter = document.getElementById('template-footer').content;
 const templatePagination = document.getElementById('template-pagination').content;
 const templateItemCategoria = document.getElementById('template-item-categoria').content;
-//.find("p").text("All Men's Women's");
-//fragment
 const fragment = document.createDocumentFragment();
 
 
@@ -40,7 +38,7 @@ $(document).ready(() => {
  * Zona de eventos
  */
 
-//Detectando el boton de comprar
+//Detectando el evento del boton de comprar
 cards.addEventListener('click', e => {
     addCarrito(e);
 });
@@ -75,11 +73,9 @@ $('#reset-categoria').click(e => {
 //Modal del formulario producto
 $('#formulario').submit(e => {
 
-    //e.preventDefault();
-    /*const upload = $('#upload')[0].files[0];
-    let fileReader = new FileReader();
-    fileReader.readAsDataURL(upload);
-    console.log(fileReader.result)*/
+    e.preventDefault();
+    const fileInput = document.getElementById('fileInput');
+    const file = fileInput.files[0];
 
     const newData = {
         "id": parseInt(calculoIndiceMayor(data)) + 1,
@@ -87,10 +83,9 @@ $('#formulario').submit(e => {
         "description": $('#description').val(),
         "price": parseInt($('#price').val()),
         "stock": parseInt($('#stock').val()),
-        "categories": $('#categoriesForm').val(),
-        //"image": $('#categorie').val(),
+        "categories": $('#categoriesForm').val().substring(0, 3).toLowerCase(),
+        "image": '/assets/img/' + file.name,
     }
-
     data.push(newData);
     filtro = null;
     metodoFiltradoDatos();
@@ -164,7 +159,7 @@ const pintarCards = () => {
     cards.innerHTML = '';
     const dataPint = datosPorPagina(paginaActual);
     dataPint.forEach(producto => {
-        if (producto.description.length > 81) {
+        if (producto.description.length > 80) {
             templateCard.querySelectorAll('p')[1].textContent = producto.description.substring(0, 81) + '...';
         } else {
             templateCard.querySelectorAll('p')[1].textContent = producto.description
