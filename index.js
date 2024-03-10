@@ -222,9 +222,11 @@ const paginacionTotales = () => {
 
 const stockNoDisponible = producto => {
     if (producto.stock <= 0) {
+        templateCard.querySelector('img').style.opacity = 0.5;
         templateCard.querySelector('button').setAttribute("disabled", true);
     } else {
         templateCard.querySelector('button').removeAttribute("disabled");
+        templateCard.querySelector('img').style.opacity = 1;
     }
 }
 
