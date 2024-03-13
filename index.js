@@ -21,16 +21,21 @@ let data;
 let dataFilter;
 let categData;
 
-const elementosPorPagina = 6;
+const elementosPorPagina = 3;
 let paginaActual = 1;
 let filtro = null;
 
 $(document).ready(() => {
     fetchData();
 
+    //Para guarda el carrito en el navegador
     /*if (localStorage.getItem('carrito')) {
         carrito = JSON.parse(localStorage.getItem('carrito'));
         pintarCarrito();
+    }
+    if(localStorage.getItem('principal')){
+        dataFilter = JSON.parse(localStorage.getItem('principal'));
+        pintarCards();
     }*/
 });
 
@@ -70,16 +75,12 @@ $('#reset-categoria').click(e => {
     e.stopPropagation();
 });
 
-//Modal del formulario producto
+//Modal del formulario para crear nuevo producto
 $('#formulario').submit(e => {
 
     e.preventDefault();
     const fileInput = document.getElementById('fileInput');
     const file = fileInput.files[0];
-    /*let reader = new FileReader();
-    reader.readAsArrayBuffer(file)
-File.
-    console.log(reader)*/
 
     const newData = {
         "id": parseInt(calculoIndiceMayor(data)) + 1,
@@ -182,6 +183,7 @@ const pintarCards = () => {
 
     });
     cards.appendChild(fragment);
+    //localStorage.setItem('principal', JSON.stringify(data));
 }
 
 const datosPorPagina = () => {
@@ -200,9 +202,6 @@ const paginacionTotales = () => {
         const cloneIni = templatePagination.cloneNode(true);
         fragment.appendChild(cloneIni);
         for (let i = 1; i <= paginasTotales; i++) {
-            /*if (i === 1) {
-                templatePagination.querySelector('li').classList.add('active');
-            }*/
             templatePagination.querySelector('a').textContent = i;
             templatePagination.querySelector('a').dataset.id = i;
             const clone = templatePagination.cloneNode(true);
@@ -260,8 +259,6 @@ const pintarCarrito = () => {
     items.innerHTML = '';
 
     Object.values(carrito).forEach(item => {
-
-
         templateCarrito.querySelectorAll('td')[0].textContent = item.cod;
         templateCarrito.querySelectorAll('td')[1].textContent = item.cantidad;
         templateCarrito.querySelector('.btn-info').dataset.id = item.id;
@@ -276,7 +273,7 @@ const pintarCarrito = () => {
 
     pintarFooter();
 
-    /*localStorage.setItem('carrito', JSON.stringify(carrito));*/
+    //localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
 const actualizarStock = (idData, typeOp) => {
