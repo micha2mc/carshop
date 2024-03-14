@@ -21,7 +21,7 @@ let data;
 let dataFilter;
 let categData;
 
-const elementosPorPagina = 3;
+const elementosPorPagina = 6;
 let paginaActual = 1;
 let filtro = null;
 
