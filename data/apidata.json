@@ -11,8 +11,8 @@
     {
         "id": 2,
         "cod": "Suv001",
-        "description": "El Nuevo 3008 es sin dudas un vehículo innovador disponible en España desde 2023.",
-        "price": 26000,
+        "description": "El Peugeot 308 SW es un modelo familiar de la marca consolidado. Tiene 5 puertas y, a través del configurador DriveK, puedes comprobar los acabados, elegir motores, CV de potencia, tapicería y equipamiento ajustado a tus necesidades y preferencias",
+        "price": 29200,
         "stock": 7,
         "image": "/assets/img/suv_01.jpg",
         "categories": "suv"
@@ -20,8 +20,8 @@
     {
         "id": 3,
         "cod": "Fam001",
-        "description": "El Nuevo 3008 es sin dudas un vehículo innovador disponible en España desde 2023.",
-        "price": 45000,
+        "description": "El modelo Fiat Tipo Station Wagon llegó al mercado español en 2020. Se presenta como un modelo innovador del segmento Familiar 5 puertas. Usa DriveK para descubrir sus inconfundibles rasgos estéticos entrando en nuestra galería de imágenes",
+        "price": 24100,
         "stock": 10,
         "image": "/assets/img/familiar_01.jpg",
         "categories": "fam"

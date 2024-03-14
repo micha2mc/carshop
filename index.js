@@ -97,6 +97,14 @@ $('#formulario').submit(e => {
     e.stopPropagation();
 });
 
+//Evento confirmacion pedido
+$('#formularioPedido').submit(e => {
+    e.preventDefault();
+    carrito = {};
+    pintarCarrito();
+    console.log('Estoy')
+});
+
 
 //Modal del formulario añadir categoria
 $('#formularioCategoria').submit(e => {

@@ -258,10 +258,37 @@
         <tr>
             <td>Total:</td>
             <td><span></span>€</td>
-            <td colspan="2" style="white-space: nowrap" !important;><a class="btn btn-primary" href="#"
-                    role="button">Realizar Pedido</a></td>
+            <td colspan="2" style="white-space: nowrap" !important;>
+
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pedidoModal">
+                    Realizar Pedido
+                </button>
+
+            </td>
         </tr>
     </template>
+    <div class="modal fade" id="pedidoModal" tabindex="-1" aria-labelledby="pedidoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="pedidoModalLabel">Confirmación Pedido</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formularioPedido">
+                        <div class="col mb-3">
+                            <p>Por favor, confirme la Compra</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Comprar</button>
+                        </div>
+                    </form>
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     <template id="template-item-categoria">
         <li><a class="dropdown-item" href="#">Sedan</a></li>
